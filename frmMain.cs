@@ -278,7 +278,7 @@ namespace FontAssistant
                 var fileName = Path.GetFileName(file);
                 var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
                 var dir = Path.GetDirectoryName(file);
-                var item = MakeListItem($"{fileNameWithoutExtension}", "提取信息");
+                var item = MakeListItem($"{fileNameWithoutExtension}", "修改信息");
                 lstLogs.Items.Add(item);
                 if (splitContainer1.Panel1Collapsed)
                     splitContainer1.Panel1Collapsed = false;
@@ -318,7 +318,6 @@ namespace FontAssistant
                 ).ContinueWith(task => item.ChangeState(task.Result), TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
-
         #endregion
 
         #region Events
@@ -417,10 +416,10 @@ namespace FontAssistant
                 int parse;
                 if (int.TryParse(input, out parse))
                 {
-                    var file001 = $"{first.Substring(0, first.Length - 5)}001{extName}";
+                    var file001 = $"{first.Substring(0, first.Length - 4)}001{extName}";
                     File.Move(first, file001);
                     for (var i = 2; i <= parse; i++)
-                        File.Copy(file001, $"{first.Substring(0, first.Length - 5)}{i:D3}{extName}");
+                        File.Copy(file001, $"{first.Substring(0, first.Length - 4)}{i:D3}{extName}");
                 }
             }
         }
